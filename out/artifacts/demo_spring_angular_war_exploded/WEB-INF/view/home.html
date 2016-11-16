@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- ANGULAR DEP -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="/res/app.js"></script>
+    <script src="/res/user-service.js"></script>
+    <script src="/res/home-controller.js"></script>
+    <!-- BOOTSTRAP DEPENDENCIES -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Title</title>
+</head>
+<body ng-app="userApp">
+    <div class="container" ng-controller="HomeController as hc">
+        <button type="button" id="point" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add User</button>
+        <table class="table table-striped">
+            <thead>
+                <td>ID</td>
+                <td>NAME</td>
+                <td>USERNAME</td>
+                <td>PASSWORD</td>
+                <td>AGE</td>
+            </thead>
+            <tbody>
+                <tr ng-repeat="u in users">
+                    <td>{{u.id}}</td>
+                    <td>{{u.name}}</td>
+                    <td>{{u.username}}</td>
+                    <td><input type="password" value="{{u.password}}" class="form-control" style="width: 75%;" readonly/></td>
+                    <td>{{u.age}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content" style="padding: 5%;">
+                    <div style="width:45%;float:left;" class="form-group">
+                        <label for="id">ID:</label>
+                        <input ng-model="currentUser.id" type="text" class="form-control" id="id">
+                    </div>
+                    <div style="width:45%;float:right;" class="form-group">
+                        <label for="name">NAME:</label>
+                        <input ng-model="currentUser.name" type="text" class="form-control" id="name">
+                    </div>
+                    <div style="width:45%;float:left;" class="form-group">
+                        <label for="username">USERNAME:</label>
+                        <input ng-model="currentUser.username" type="text" class="form-control" id="username">
+                    </div>
+                    <div style="width:45%;float:right;" class="form-group">
+                        <label for="pass">PASSWORD:</label>
+                        <input ng-model="currentUser.password" type="password" class="form-control" id="pass">
+                    </div>
+                    <div style="width:45%;float:left;" class="form-group">
+                        <label for="age">AGE:</label>
+                        <input ng-model="currentUser.age" type="number" class="form-control" id="age">
+                    </div>
+                    <div style="width:45%;" class="form-group">
+                        <button type="button" ng-click="saveUser()" style="" class="btn btn-primary">Save</button>
+                        <button type="button" style="" ng-click="manageModal()" class="btn btn-warning">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>
