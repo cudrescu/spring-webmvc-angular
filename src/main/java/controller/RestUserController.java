@@ -31,9 +31,10 @@ public class RestUserController {
         return userService.findById(id);
     }
 
-    @RequestMapping(value = "/deleteUser", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/deleteUser/{id}", method = RequestMethod.DELETE)
     @ResponseBody
-    public boolean deleteUserById(@RequestParam("id") int id) {
+    public boolean deleteUserById(@PathVariable int id) {
+        System.out.println(id);
         return userService.removeUser(id);
     }
 

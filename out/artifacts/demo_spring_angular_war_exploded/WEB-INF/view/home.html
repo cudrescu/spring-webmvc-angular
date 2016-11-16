@@ -23,14 +23,16 @@
                 <td>USERNAME</td>
                 <td>PASSWORD</td>
                 <td>AGE</td>
+                <td>actions</td>
             </thead>
             <tbody>
                 <tr ng-repeat="u in users">
-                    <td>{{u.id}}</td>
-                    <td>{{u.name}}</td>
-                    <td>{{u.username}}</td>
-                    <td><input type="password" value="{{u.password}}" class="form-control" style="width: 75%;" readonly/></td>
-                    <td>{{u.age}}</td>
+                    <td ng-click="triggerUpdate(u)">{{u.id}}</td>
+                    <td ng-click="triggerUpdate(u)">{{u.name}}</td>
+                    <td ng-click="triggerUpdate(u)">{{u.username}}</td>
+                    <td ng-click="triggerUpdate(u)"><input type="password" value="{{u.password}}" class="form-control" style="width: 75%;" readonly/></td>
+                    <td ng-click="triggerUpdate(u)">{{u.age}}</td>
+                    <td><a ng-click="deleteUser(u.id)">delete</a></td>
                 </tr>
             </tbody>
         </table>
@@ -60,7 +62,8 @@
                         <input ng-model="currentUser.age" type="number" class="form-control" id="age">
                     </div>
                     <div style="width:45%;" class="form-group">
-                        <button type="button" ng-click="saveUser()" style="" class="btn btn-primary">Save</button>
+                        <button ng-if="currentUser.id == 0" type="button" ng-click="saveUser()" style="" class="btn btn-primary">Save</button>
+                        <button ng-if="currentUser.id != 0" type="button" ng-click="updateUser()" style="" class="btn btn-primary">Update</button>
                         <button type="button" style="" ng-click="manageModal()" class="btn btn-warning">Cancel</button>
                     </div>
                 </div>

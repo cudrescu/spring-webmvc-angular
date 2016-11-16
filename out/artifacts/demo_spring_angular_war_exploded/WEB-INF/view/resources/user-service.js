@@ -2,8 +2,8 @@ app.service("userService", function( $http, $q ) {
         var factory = {
             loadUsers: fetchAllUsers,
             createUser: createUser,
-            //updateUser:updateUser,
-            //deleteUser:deleteUser
+            updateUser:updateUser,
+            deleteUser:deleteUser
         };
         return factory;
 
@@ -36,9 +36,9 @@ app.service("userService", function( $http, $q ) {
             );
         return deferred.promise;
     }
-    function fetchAllUsers() {
+    function updateUser(user) {
         var deferred = $q.defer();
-        $http.get("/users/")
+        $http.put("/users/updateUser",user)
             .then(
                 function (response) {
                     deferred.resolve(response.data);
@@ -50,9 +50,9 @@ app.service("userService", function( $http, $q ) {
             );
         return deferred.promise;
     }
-    function fetchAllUsers() {
+    function deleteUser(id) {
         var deferred = $q.defer();
-        $http.get("/users/")
+        $http.delete("/users/deleteUser/"+id)
             .then(
                 function (response) {
                     deferred.resolve(response.data);
